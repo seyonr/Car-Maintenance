@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { db } from "./FirebaseConfig";
+import { db } from "../../FirebaseConfig";
 import { doc, collection, getDocs, addDoc, Timestamp, deleteDoc } from "firebase/firestore";
+import MaintenanceComp from "../../components/MaintenanceComp";
+import Header from "../../components/Header/Header";
 
 export default function Maintenance() {
   const { carID } = useParams();
@@ -9,8 +11,8 @@ export default function Maintenance() {
   const { userID } = location.state || {};
   const [maintenance, setMaintenance] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [selectedType, setSelectedType] = useState("");
+  const [addNewMaintenance, setAddNewMaintenance] = useState(false)
 
   useEffect(() => {
     fetchMaintenance();
@@ -99,57 +101,20 @@ export default function Maintenance() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h2>Maintenance Records</h2>
-      {maintenance.length > 0 ? (
-        <ul>
-          {maintenance.map(m => (
-            <li key={m.id}>
-              {/* {m.date?.toDate ? m.date.toDate().toLocaleDateString() : "Invalid Date"} */}
-              <strong>Date:</strong> {m.date} <br />
-              <strong>Type:</strong> {m.type} <br />
-              <strong>Price:</strong> ${m.price} <br />
-              <strong>KM:</strong> {m.km} <br />
-              <strong>Location:</strong> {m.location} <br />
-              <button onClick={() => deleteMaintenance(m.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No maintenance records found for this car.</p>
-      )}
-      <form onSubmit={addMaintenance}>
-        <label htmlFor="type">Type of Serivce:</label>
-        <select id="type" name="type" defaultValue="" value={selectedType} onChange={handleTypeChange} required>
-          <option value="" disabled>-- Select service --</option>
-          <option value="Oil Change">Oil Change</option>
-          <option value="Engine Air Filter">Engine Air Filter</option>
-          <option value="Transmisson Oil">Transmisson Oil</option>
-          <option value="Coolant">Coolant</option>
-          <option value="other">Other</option>
-        </select>
-        <br/>
-        {selectedType === "other" && (
-            <>
-              <label htmlFor="custom">Type Service Name:</label>
-              <input id="custom" type="text" name="custom" placeholder="Enter service name" required/>
-              <br />
-            </>
-        )}
-        <label htmlFor="date">Date of Service:</label>
-        <input id="date" type="date" name="date" required></input>
-        <br/>
-        <label htmlFor="km">Current KM:</label>
-        <input id="km" type="number" name="km" placeholder="32000" required></input>
-        <br/>
-        <label htmlFor="price">Price of serivce:</label>
-        <input id="price" type="float" name="price" placeholder="150" required></input>
-        <br/>
-        <label htmlFor="location">Location of maintence:</label>
-        <input id="location" type="text" name="location" placeholder="BMW Toronto" required></input>
-        <br/>
-        <button>Add Maintence</button>
-      </form>
-    </div>
+    <>
+      <Header userID={userID}/>
+      <MaintenanceComp 
+        maintenance={maintenance}
+        deleteMaintenance={deleteMaintenance}
+        setAddNewMaintenance={setAddNewMaintenance}
+        addNewMaintenance={addNewMaintenance}
+        addMaintenance={addMaintenance}
+        selectedType={selectedType}
+        handleTypeChange={handleTypeChange}
+      />
+    </>
   );
 }
+
+
+

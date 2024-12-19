@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
-import { db } from './FirebaseConfig'
-import { ref, get, child } from "firebase/database";
+import { db } from '../../FirebaseConfig'
+// import { ref, get, child } from "firebase/database";
 import { doc, getDoc, collection, getDocs, addDoc, deleteDoc } from "firebase/firestore";
+
+import Header from '../../components/Header/Header';
+import CarDisplayComp from '../../components/CarDisplayComp/CarDisplayComp';
+
 
 
 export default function CarDisplayPage(){
@@ -11,10 +15,10 @@ export default function CarDisplayPage(){
     const [cars, setCars] = useState([]);
     const [maintence, setMaintence] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [addNewCar, setAddNewCar] = useState(false)
 
     useEffect(() => {
         fetchUserData();
-    fetchUserData();
     }, [userID]);
 
     async function fetchUserData(){
@@ -72,6 +76,7 @@ export default function CarDisplayPage(){
     
         //   setCars(updatedCarsList);
           e.target.reset();
+          setAddNewCar(prev => !prev)
           console.log("Car added successfully!");
         } catch (error) {
           console.error("Error adding car:", error);
@@ -92,35 +97,21 @@ export default function CarDisplayPage(){
     if (loading) return <p>Loading...</p>;
 
     return (
-    <div>
-        <h2>User Name: {name}</h2>
-        <h3>Cars:</h3>
-        {cars.length > 0 ? (
-        <ul>
-            {cars.map(car => (
-                
-                    <li key={car.id}>
-                        <Link to={`/cars/maintence/${car.id}`} state={{ userID : userID}}>{car.make} {car.model} ({car.year})</Link>
-                        <button onClick={() => deleteCar(car.id)}>Delete</button>
-                    </li>
-                
-            ))}
-        </ul>
-        ) : (
-        <p>No cars found for this user.</p>
-        )}
-        <form onSubmit={addCar}>
-            <label htmlFor="year">Year:</label>
-            <input id="year" type="number" name="year" placeholder="2003" required></input>
-            <br/>
-            <label htmlFor="make">Make:</label>
-            <input id="make" type="text" name="make" placeholder="BMW" required></input>
-            <br/>
-            <label htmlFor="model">Model:</label>
-            <input id="model" type="text" name="model" placeholder="M5" required></input>
-            <br/>
-            <button style={{ marginTop: "20px" }}>Add New Car</button>
-        </form>
-    </div>
+        <div>
+            <Header userID={userID}/>
+            <CarDisplayComp
+                name={name}
+                cars={cars}
+                userID={userID}
+                addNewCar={addNewCar}
+                setAddNewCar={setAddNewCar}
+                deleteCar={deleteCar}
+                addCar={addCar}
+            />
+        </div>
     );
 }
+
+
+
+

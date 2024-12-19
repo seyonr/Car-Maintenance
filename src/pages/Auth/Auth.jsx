@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { auth, db } from '../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import './Auth.css'
 
-const Auth = () => {
+export default function Auth(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -16,7 +16,7 @@ const Auth = () => {
   const navigate = useNavigate();
 
   // Register New User
-  const handleRegister = async () => {
+  async function handleRegister(){
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -34,26 +34,26 @@ const Auth = () => {
   };
 
   // Login Existing User
-  const handleLogin = async () => {
+  async function handleLogin(){
     try {
-    //   await signInWithEmailAndPassword(auth, email, password);
-    //   alert('Login successful!');
-
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         setUserId(user.uid);
-        navigate(`/cars/${user.uid}`); // This links to the navigate page
+        navigate(`/cars/${user.uid}`); 
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <div>
+  <div className='auth-main'>
+    <h1>Car Maintenance Tracker</h1>
+    <h4>Built By : SR</h4>
+    <div className='auth-form'>
       <h2>{isRegistering ? 'Register' : 'Login'}</h2>
 
       {isRegistering && (
-        <div>
+        <div className='name-form form'>
           <input
             type="text"
             placeholder="Name"
@@ -63,7 +63,7 @@ const Auth = () => {
         </div>
       )}
 
-      <div>
+      <div className='email-form form'>
         <input
           type="email"
           placeholder="Email"
@@ -72,7 +72,7 @@ const Auth = () => {
         />
       </div>
 
-      <div>
+      <div className='password-form form'>
         <input
           type="password"
           placeholder="Password"
@@ -81,24 +81,18 @@ const Auth = () => {
         />
       </div>
 
-      <button onClick={isRegistering ? handleRegister : handleLogin}>
+      <button onClick={isRegistering ? handleRegister : handleLogin} className='button'>
         {isRegistering ? 'Register' : 'Login'}
       </button>
 
-      <p>
+      <p className='bottom-p'>
         {isRegistering ? 'Already have an account?' : "Don't have an account?"}{' '}
-        <span
-          style={{ cursor: 'pointer', color: 'blue' }}
-          onClick={() => setIsRegistering(!isRegistering)}
-        >
-          {isRegistering ? 'Login' : 'Register'}
-        </span>
+        <span className='special-p' onClick={() => setIsRegistering(!isRegistering)}>{isRegistering ? 'Login' : 'Register'}</span>
       </p>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
+    </div>
   );
 };
-
-export default Auth;
 
