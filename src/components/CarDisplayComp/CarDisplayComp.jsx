@@ -35,6 +35,12 @@ export default function CarDisplayComp(props) {
                 ) : (
                     <p>No cars found for this user.</p>
                 )}
+                <p className='loadP'>
+                    Missing a few cars?
+                    <button onClick={() => props.fetchUserData(true)} disabled={props.loading} className='loadBtn' >
+                        {props.loading ? 'Loading...' : 'Load More'}
+                    </button>
+                </p>
             </div>
 
             <div className='addnewcar'>

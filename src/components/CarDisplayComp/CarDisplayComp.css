@@ -38,6 +38,30 @@
     color: #E6E6E6;
 }
 
+.loadP{
+    background-color: #444054;
+    color: #E6E6E6;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadBtn{
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: scale 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    margin-left: 10px;
+}
+
+.loadBtn:hover{
+    scale: 1.02;
+    background-color: #7F7EFF;
+    color: #E6E6E6;
+}
+
 .carlist{
     text-decoration: none;
     background-color: #444054;
@@ -165,10 +189,24 @@
     cursor: pointer;
 }
 
+.addbtn{
+    background-color: #444054;
+    color: #E6E6E6;
+    transition: all 0.3s ease-in-out;
+}
+
+.cancelbtn{
+    background-color: #444054;
+    color: #E6E6E6;
+    transition: all 0.3s ease-in-out;
+}
+
 .addbtn:hover{
     background-color: #7eff9e;
+    color: #444054;
 }
 
 .cancelbtn:hover{
     background-color: #ff7e7e;
+    color: #444054;
 }
