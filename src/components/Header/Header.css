@@ -9,7 +9,7 @@ header{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 30px 10%;
+    padding: 15px 10%;
     width: 100vw;
 }
 
@@ -33,7 +33,7 @@ header img{
     transition: 0.3s all ease-in-out;
     text-decoration: none;
     color: #E6E6E6;
-    font-size: 0.9vw;
+    font-size: 15px;
     cursor: pointer;
 }
 
@@ -54,7 +54,7 @@ header img{
     border-radius: 20px;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
-    font-size: 0.9vw;
+    font-size: 15px;
 }
 
 .contact-b:hover{

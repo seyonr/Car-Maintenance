@@ -1,3 +1,174 @@
+/* About Section */
 .card-main{
-    padding: 30px 10%;
+    padding: 15px 10%;
+}
+
+.about-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.about-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-right img {
+    max-width: 400px;       
+    height: auto;         
+    border-radius: 0;     
+    display: block;       
+    margin: 0 auto;       
+}
+/* -------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------- */
+/* List Section */
+.list-section {
+    margin-top: 10px;
+    background-color: #444054;
+    padding: 30px;          
+    width: 100%;            
+    color: #E6E6E6;         
+    border-radius: 8px;     
+}
+
+.list-section h2,h3{
+    background-color: #444054;
+    color: #E6E6E6;
+}
+
+.carlist{
+    text-decoration: none;
+    background-color: #444054;
+}
+
+.carlist-li{
+    list-style: none;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #444054;
+}
+
+.carlist-link{
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+    color: #444054;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    transition: scale 0.3s ease-in-out;
+}
+
+.carlist-link:hover{
+    scale: 1.01;
+}
+
+.carlist-li button{
+    margin-left: 20px;
+    background-color: #444054;
+    border: none;
+    /* margin-left: 20px;
+    padding: 10px 40px;
+    font-size: 15px;
+    border: none;
+    background-color: #7F7EFF;
+    color: #E6E6E6;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; */
+}
+
+/* .carlist-li button:hover{
+    background-color: red;
+} */
+
+.trash-img{
+    padding: 10px 40px;
+    background-color: #7F7EFF;
+    color: #E6E6E6;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.trash-img:hover{
+    background-color: #ff7e7e;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------- */
+/* Add New Car */
+.addnewcar{
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #7F7EFF;
+}
+
+.addnewcar h3{
+    background-color: #7F7EFF;
+}
+
+.btn1{
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn1:hover{
+    background-color: #444054;
+    color: #E6E6E6;
+}
+
+.addform{
+    background-color: #7F7EFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addform label{
+    color: #444054;
+    font-size: 17px;
+    background-color: #7F7EFF;
+    margin-top: 5px;
+}
+
+.addform input{
+    margin-top: 5px;
+    border: none;
+    text-align: center;
+    padding: 8px 15px;
+    border-radius: 10px;
+}
+
+.addformbutton{
+    background-color: #7F7EFF;
+}
+
+.addformbutton button{
+    margin-left: 10px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.addbtn:hover{
+    background-color: #7eff9e;
+}
+
+.cancelbtn:hover{
+    background-color: #ff7e7e;
 }
