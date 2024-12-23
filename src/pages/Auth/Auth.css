@@ -66,6 +66,7 @@
     margin-top: 10px;
     background-color: #444054;
     color: #E6E6E6;
+    text-align: center;
 }
 
 .special-p{
@@ -74,9 +75,83 @@
     background-color: #444054;
     text-decoration: none;
     transition: font-size 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    text-align: center;
 }
 
 .special-p:hover{
     font-size: 17px;
     text-shadow: 0 0 20px rgba(230, 230, 230, 0.8);
+}
+
+.error-p{
+    background-color: #444054;
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Responsive Sizing */
+@media (max-width: 780px){
+    .auth-main h1{
+        font-size: 30px;
+    }
+    .auth-main h4{
+        font-size: 20px;
+    }
+
+    .error-p{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 650px){
+    .auth-main h1{
+        font-size: 25px;
+    }
+    .auth-main h4{
+        font-size: 15px;
+    }
+
+    .bottom-p{
+        font-size: 14px;
+    }
+
+    .error-p{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px){
+    .auth-main h1{
+        font-size: 21px;
+        text-align: center;
+    }
+    .auth-main h4{
+        font-size: 17px;
+    }
+
+    .auth-form h2{
+        font-size: 18px;
+    }
+
+    .auth-form{
+        padding: 10px;
+    }
+
+    .form{
+        /* margin: 10px; */
+    }
+
+    .form input{
+        font-size: 12px;
+    }
+
+    .bottom-p{
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .error-p{
+        font-size: 10px;
+    }
 }

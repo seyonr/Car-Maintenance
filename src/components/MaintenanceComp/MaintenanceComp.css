@@ -203,3 +203,91 @@
     color: #E6E6E6;
     background-color: #444054;
 }
+
+.up{
+    margin-top: 5px;
+}
+
+.up p{
+    margin-top: 3px;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Responsive Sizing */
+@media (max-width: 1100px){
+    .maincomp-div h2{
+        font-size: 25px;
+    }
+
+    .upcoming h2{
+        font-size: 19px;
+    }
+
+    .main-li-top strong{
+        font-size: 17px;
+    }
+
+    .main-li-top p{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 780px){
+    .main-li{
+        padding: 10px 8px;
+        text-align: center;
+    }
+
+    .main-li-top strong{
+        font-size: 15px;
+    }
+
+    .main-li-top p{
+        font-size: 14px;
+    }
+
+    .upcoming h2{
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .upcoming p{
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .up p{
+        margin-top: 7px;
+    }
+}
+
+@media (max-width: 650px){
+    .maincomp-div h2{
+        font-size: 24px;
+    }
+
+    .upcoming h2{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px){
+    .maincomp-div h2{
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .upcoming h2{
+        font-size: 16px;
+    }
+
+    .main-li-top{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .bottom{
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}

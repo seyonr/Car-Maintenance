@@ -90,7 +90,7 @@ export default function Auth(){
         <span className='special-p' onClick={() => setIsRegistering(!isRegistering)}>{isRegistering ? 'Login' : 'Register'}</span>
       </p>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'red' }} className='error-p'>{error}</p>}
     </div>
     </div>
   );

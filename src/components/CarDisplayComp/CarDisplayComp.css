@@ -210,3 +210,123 @@
     background-color: #ff7e7e;
     color: #444054;
 }
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Responsive Sizing */
+@media (max-width: 780px){
+    .about-left p{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 650px){
+    .about-left h1{
+        font-size: 30px;
+    }
+
+    .about-left p{
+        font-size: 13px;
+    }
+
+    .list-section h2{
+        font-size: 20px;
+    }
+
+    .list-section h3{
+        font-size: 15px;
+    }
+
+    .carlist-link{
+        font-size: 14px;
+    }
+
+    .trash-img{
+        width: 100px;
+    }
+    
+    .loadP{
+        font-size: 14px;
+    }
+
+    .loadBtn{
+        font-size: 13px;
+    }
+
+    .addnewcar h3{
+        font-size: 16px;
+    }
+
+    .btn1{
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px){
+    .about-section{
+        grid-template-columns: 1fr;
+    }
+
+    .about-left h1{
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .about-left p{
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .about-right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .list-section h2{
+        text-align: center;
+    }
+
+    .list-section h3{
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .carlist-link{
+        font-size: 14px;
+    }
+
+    .carlist-link{
+        padding: 11px;
+    }
+
+    .carlist-li button{
+        margin-left: 10px;
+    }
+
+    .trash-img{
+        padding: 10px 30px;
+        width: 75px;
+    }
+
+    .loadP{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .loadP button{
+        margin-top: 5px;
+        font-size: 12px;
+    }
+
+    .addnewcar h3{
+        font-size: 14px;
+    }
+
+    .addform label{
+        font-size: 13px;
+    }
+
+    .addformbutton button{
+        font-size: 12px;
+    }
+}
