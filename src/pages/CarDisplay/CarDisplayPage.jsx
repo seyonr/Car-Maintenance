@@ -1,38 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { db } from '../../FirebaseConfig'
-import { doc, getDoc, collection, getDocs, addDoc, deleteDoc, orderBy, query, limit, startAfter  } from "firebase/firestore";
-
-import Header from '../../components/Header/Header';
-import CarDisplayComp from '../../components/CarDisplayComp/CarDisplayComp';
+import { doc, getDoc, collection, getDocs, addDoc, deleteDoc, orderBy, query, limit, startAfter  } from "firebase/firestore"
+import Header from '../../components/Header/Header'
+import CarDisplayComp from '../../components/CarDisplayComp/CarDisplayComp'
 
 
 
 export default function CarDisplayPage(){
-    const { userID } = useParams();
-    const [name, setName] = useState("");
-    const [cars, setCars] = useState([]);
-    // const [maintence, setMaintence] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { userID } = useParams()
+    const [name, setName] = useState("")
+    const [cars, setCars] = useState([])
+    const [loading, setLoading] = useState(true)
     const [addNewCar, setAddNewCar] = useState(false)
-
     const [lastDoc, setLastDoc] = useState(null)
 
     useEffect(() => {
-        fetchUserData();
-    }, [userID]);
+        fetchUserData()
+    }, [userID])
 
     async function fetchUserData(loadMore = false) {
         try {
-            setLoading(true);
-            // Fetch the user's name
-            const userRef = doc(db, "users", userID);
-            const userSnap = await getDoc(userRef);
+            setLoading(true)
+            // Fetch the userID
+            const userRef = doc(db, "users", userID)
+            const userSnap = await getDoc(userRef)
 
             if (userSnap.exists()) {
-                setName(userSnap.data().name);
+                setName(userSnap.data().name)
             } else {
-                console.log("No user data found");
+                console.log("No user data found")
             }
     
             // Car Fetching
@@ -40,7 +37,7 @@ export default function CarDisplayPage(){
                 collection(db, "users", userID, "cars"),
                 orderBy('year', 'desc'),
                 limit(5)
-            );
+            )
     
             // If loading more, use the lastDoc for pagination
             if (loadMore && lastDoc) {
@@ -49,40 +46,40 @@ export default function CarDisplayPage(){
                     orderBy('year', 'desc'),
                     startAfter(lastDoc),
                     limit(5)
-                );
+                )
             }
     
-            const carSnapshot = await getDocs(carQuery);
+            const carSnapshot = await getDocs(carQuery)
     
             if (!carSnapshot.empty) {
                 const newCars = carSnapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
-                }));
+                }))
     
                 if (loadMore) {
-                    setCars(prevCars => [...prevCars, ...newCars]);
+                    setCars(prevCars => [...prevCars, ...newCars])
                 } else {
-                    setCars(newCars);
+                    setCars(newCars)
                 }
     
                 // Update the last document for pagination
-                setLastDoc(carSnapshot.docs[carSnapshot.docs.length - 1]);
+                setLastDoc(carSnapshot.docs[carSnapshot.docs.length - 1])
             } else {
-                console.log('No more cars to load');
+                console.log('No more cars to load')
             }
         } catch (error) {
-            console.error("Error fetching data:", error);
+            console.error("Error fetching data:", error)
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
     }
     
 
     async function addCar(e){
-        e.preventDefault();
+        e.preventDefault()
         try {
-          const carsRef = collection(db, "users", userID, "cars");
+          const carsRef = collection(db, "users", userID, "cars")
           
           const formData = new FormData(e.target) // Capture form data
           const userYear = formData.get('year')
@@ -95,35 +92,30 @@ export default function CarDisplayPage(){
             make: userMake,
             model: userModel,
             year: userYear,
-          };
+          }
     
-          // Add the new car document to the 'cars' collection
-          await addDoc(carsRef, newCar);
-    
-          // Refresh the cars list after adding the new car
-          fetchUserData();
-    
-        //   setCars(updatedCarsList);
-          e.target.reset();
+          await addDoc(carsRef, newCar) // Add new car
+          fetchUserData() // Refresh list
+          e.target.reset() // Reset table
           setAddNewCar(prev => !prev)
-          console.log("Car added successfully!");
+          console.log("Car added successfully!")
         } catch (error) {
-          console.error("Error adding car:", error);
-        }
-    };
-
-    async function deleteCar(carID){
-        try{
-            const carsRef = doc(db, "users", userID, "cars", carID);
-            await deleteDoc(carsRef)
-            fetchUserData()
-            console.log('Car deleted successfully!');
-        }catch(error){
-            console.error('Error deleting car:', error);
+          console.error("Error adding car:", error)
         }
     }
 
-    if (loading) return <p>Loading...</p>;
+    async function deleteCar(carID){
+        try{
+            const carsRef = doc(db, "users", userID, "cars", carID) // Creating reference of car to delete
+            await deleteDoc(carsRef) // Delete car
+            fetchUserData() // Reload car list
+            console.log('Car deleted successfully!')
+        }catch(error){
+            console.error('Error deleting car:', error)
+        }
+    }
+
+    if (loading) return <p>Loading...</p>
 
     return (
         <div>
@@ -140,5 +132,5 @@ export default function CarDisplayPage(){
                 fetchUserData={fetchUserData}
             />
         </div>
-    );
+    )
 }

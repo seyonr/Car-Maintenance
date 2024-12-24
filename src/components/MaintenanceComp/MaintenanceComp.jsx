@@ -62,7 +62,7 @@ export default function MaintenanceComp(props){
                             <label htmlFor="price">Price of serivce:</label>
                             <input id="price" type="float" name="price" placeholder="150" required></input>
                             
-                            <label htmlFor="location">Location of maintence:</label>
+                            <label htmlFor="location">Location of maintenance:</label>
                             <input id="location" type="text" name="location" placeholder="BMW Toronto" required></input>
 
                             <div className="newformbutton">

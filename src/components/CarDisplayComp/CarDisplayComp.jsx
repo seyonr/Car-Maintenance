@@ -66,5 +66,5 @@ export default function CarDisplayComp(props) {
                 )}
                 </div>
         </div>
-    );
+    )
 }

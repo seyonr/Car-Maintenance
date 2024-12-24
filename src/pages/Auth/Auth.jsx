@@ -39,6 +39,7 @@ export default function Auth(){
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         setUserId(user.uid);
+        // Navigating to list of cars matching user
         navigate(`/cars/${user.uid}`); 
     } catch (err) {
       setError(err.message);
